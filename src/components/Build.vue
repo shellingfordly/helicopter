@@ -9,6 +9,11 @@ const builds = createObstacles(ref([]));
 function move() {
   builds.value.forEach((build) => {
     build.x -= 1;
+
+    if (build.x + build.width < 0) {
+      const index = builds.value.indexOf(build);
+      builds.value.splice(index, 1);
+    }
   });
 
   nextTick(() => {
@@ -31,11 +36,13 @@ onMounted(move);
 </script>
 
 <template>
-  <Container :x="build.x" :y="build.y" v-for="build in builds">
-    <Sprite
-      :texture="buildTexture1"
-      :width="build.width"
-      :height="build.height"
-    />
-  </Container>
+  <template v-for="build in builds" :key="build.width">
+    <Container :x="build.x" :y="build.y">
+      <Sprite
+        :texture="buildTexture1"
+        :width="build.width"
+        :height="build.height"
+      />
+    </Container>
+  </template>
 </template>

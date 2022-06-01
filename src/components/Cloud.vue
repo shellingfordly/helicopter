@@ -20,6 +20,11 @@ const clouds = createObstacles(ref([]), option);
 function move() {
   clouds.value.forEach((cloud) => {
     cloud.x -= 1;
+
+    if (cloud.x < 0) {
+      const index = clouds.value.indexOf(cloud);
+      clouds.value.splice(index, 1);
+    }
   });
   nextTick(() => {
     const prevCloud = clouds.value[clouds.value.length - 1];
