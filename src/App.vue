@@ -9,10 +9,19 @@ import { ContainerWidth } from "./contants";
 <template>
   <Container>
     <Sprite :texture="bgTexture" :width="ContainerWidth" />
-    <Plane />
+    <Text text="sh" />
+    <!-- <Plane />
     <Cloud />
-    <Build />
+    <Build /> -->
   </Container>
 </template>
 
-<style></style>
+<style>
+#app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #000;
+}
+</style>

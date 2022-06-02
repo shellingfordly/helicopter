@@ -3,7 +3,8 @@ import { game } from "./game";
 import { createApp } from "./runtime-canvas";
 import "./styles/index.css";
 
-document.body.append(game.view);
+const container = document.getElementById("app");
+container && container.append(game.view);
 
 const app = createApp(App);
 app.mount(game.stage);

@@ -1,10 +1,18 @@
 <script setup lang="ts">
 import { nextTick, onMounted, reactive, ref } from "vue";
 import buildTexture1 from "../assets/build1.svg";
-import { createObstacle, createObstacles } from "../game/obstacle";
+import { createObstacle, createObstacles, OptionType } from "../game/obstacle";
 import { ContainerWidth } from "../contants";
 
-const builds = createObstacles(ref([]));
+const defaultOptions: OptionType = {
+  x: ContainerWidth / 3,
+  y: 0,
+  height: [50, 150],
+  width: [40, 0],
+  spacing: 50,
+};
+
+const builds = createObstacles(ref([]), defaultOptions);
 
 function move() {
   builds.value.forEach((build) => {
@@ -20,11 +28,8 @@ function move() {
     const prevBuild = builds.value[builds.value.length - 1];
     if (prevBuild.x < ContainerWidth) {
       const nextBuild = createObstacle({
+        ...defaultOptions,
         x: prevBuild.x + prevBuild.width,
-        y: 0,
-        height: [50, 150],
-        width: [50, 80],
-        spacing: [0, 30],
       });
       builds.value.push(nextBuild);
     }

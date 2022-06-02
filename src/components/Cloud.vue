@@ -10,10 +10,11 @@ import {
 } from "../game/obstacle";
 
 const option: OptionType = {
+  x: 0,
   y: random([0, 200]),
   width: [40, 90],
   height: [20, 90],
-  spacing: [30, 60],
+  spacing: 50,
 };
 const clouds = createObstacles(ref([]), option);
 
@@ -21,7 +22,7 @@ function move() {
   clouds.value.forEach((cloud) => {
     cloud.x -= 1;
 
-    if (cloud.x < 0) {
+    if (cloud.x + cloud.width < 0) {
       const index = clouds.value.indexOf(cloud);
       clouds.value.splice(index, 1);
     }
@@ -36,7 +37,7 @@ function move() {
   window.requestAnimationFrame(move);
 }
 
-onMounted(move);
+// onMounted(move);
 </script>
 
 <template>

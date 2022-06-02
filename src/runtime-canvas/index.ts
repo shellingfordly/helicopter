@@ -2,7 +2,9 @@ import { Container, Sprite, Texture, Text } from "pixi.js";
 import { createRenderer } from "vue";
 
 export const renderer = createRenderer({
-  createElement(type) {
+  createElement(type, ...args) {
+    console.log("t", args);
+
     let element;
     switch (type) {
       case "Container":
@@ -10,6 +12,9 @@ export const renderer = createRenderer({
         break;
       case "Sprite":
         element = new Sprite();
+        break;
+      case "Text":
+        element = new Text("xx");
         break;
       default:
         throw new Error(`can't find ${type}`);

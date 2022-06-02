@@ -9,26 +9,20 @@ export interface ObstacleType {
 }
 
 export interface OptionType {
-  x?: number;
+  x: number;
   y: number;
   width: [number, number];
   height: [number, number];
-  spacing: [number, number];
+  spacing: number;
 }
 
 export function createObstacles(
   obstacles: Ref<ObstacleType[]>,
-  options: OptionType = {
-    x: ContainerWidth / 3,
-    y: 0,
-    height: [50, 150],
-    width: [50, 80],
-    spacing: [0, 30],
-  }
+  options: OptionType
 ) {
   Array.from({ length: 10 }).forEach(() => {
     const obstacle = createObstacle(options);
-    options.x = obstacle.x + obstacle.width + random(options.spacing);
+    options.x = obstacle.x + obstacle.width + options.spacing;
 
     obstacles.value.push(obstacle);
   });
@@ -42,7 +36,7 @@ export function createObstacle(option: OptionType): ObstacleType {
   return {
     width,
     height,
-    x: option.x || ContainerWidth / 3,
+    x: option.x + option.spacing || ContainerWidth / 3,
     y: option.y ? random([0, 150]) : ContainerHeight - height,
   };
 }
