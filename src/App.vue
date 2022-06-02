@@ -14,3 +14,5 @@ import { ContainerWidth } from "./contants";
     <Build />
   </Container>
 </template>
+
+<style></style>

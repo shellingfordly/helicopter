@@ -1,2 +1,2 @@
-export const ContainerWidth = document.body.clientWidth;
-export const ContainerHeight = 400;
+export const ContainerWidth = 500;
+export const ContainerHeight = 300;

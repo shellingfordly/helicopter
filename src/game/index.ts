@@ -1,8 +1,6 @@
 import { Application } from "pixi.js";
+import { ContainerHeight, ContainerWidth } from "../contants";
 export * from "./plane";
-
-export const ContainerWidth = document.body.clientWidth;
-export const ContainerHeight = 400;
 
 export const game = new Application({
   width: ContainerWidth,
